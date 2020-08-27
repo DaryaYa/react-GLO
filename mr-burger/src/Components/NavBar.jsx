@@ -31,7 +31,7 @@ const ImgLogo = styled.img`
 `;
 
 const Login = styled.button`
-  margin-right: 15px;
+  margin-right: 25px;
   cursor: pointer;
   background-color: transparent;
   border: none;
