@@ -10,17 +10,17 @@ const MenuStyled = styled.main`
 
 `;
 
-export const Menu = () => (
+export const Menu = ({ setOpenItem }) => (
   <MenuStyled>
     <Banner />
     <section>
       <h2>Burgers</h2>
-      <ListItem itemList={dbMenu.burger} />
+      <ListItem itemList={dbMenu.burger} setOpenItem={setOpenItem} />
     </section>
 
     <section>
       <h2>Starters / Drinks</h2>
-      <ListItem itemList={dbMenu.other} />
+      <ListItem itemList={dbMenu.other} setOpenItem={setOpenItem} />
     </section>
   </MenuStyled>
 );

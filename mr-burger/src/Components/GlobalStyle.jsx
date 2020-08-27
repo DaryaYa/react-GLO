@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: @f0f0f0;
     color: black;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
   }
 
