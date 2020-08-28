@@ -2,11 +2,20 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    background-color: #2e0a0a;
+  }
   body {
-    background-color: @f0f0f0;
+    // background-color: #f0f0f0;
     color: black;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   h1, h2, h3 {
@@ -20,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button, input {
     font-family: inherit;
+    font-size: inherit;
   }
 
   ul, li {
