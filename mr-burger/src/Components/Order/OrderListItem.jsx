@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Trash from '../imgs/trash.svg';
+import Trash from '../../imgs/trash.svg';
 
 const OrderItemStyled = styled.li`
 	display: flex;
@@ -29,11 +29,11 @@ const TrashButton = styled.button`
 	cursor: pointer;
 `;
 
-export const OrderListItem = () => (
+export const OrderListItem = ({ order }) => (
   <OrderItemStyled>
-    <ItemName>JS Burger</ItemName>
-    <span>2</span>
-    <ItemPrice>20 P</ItemPrice>
-		<TrashButton />
+    <ItemName>{order.name}</ItemName>
+    <span>1</span>
+    <ItemPrice>{order.price} ₽</ItemPrice>
+    <TrashButton />
   </OrderItemStyled>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonCheckout } from './ButtonCheckout';
+import { ButtonCheckout } from '../ButtonCheckout';
 
 const Overlay = styled.div`
   position: fixed;
@@ -44,26 +44,35 @@ const Info = styled.div`
   align-items: center;
 `;
 
-export const ModalItem = ({ openItem, setOpenItem }) => {
+export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+  const closeModal = (event) => {
+    if (event.target.id === "overlay") {
+      setOpenItem(null);
+    }
+  };
 
-	function closeModal(event) {
-		if(event.target.id === 'overlay') {
-			setOpenItem(null);
-		}
-	}
+  const order = {
+    name: openItem.name,
+    price: openItem.price,
+  };
 
-	if (!openItem) return null;
-    return (
-      <Overlay id="overlay" onClick={closeModal}>
-        <Modal>
-          <Banner img={openItem.img} />
-          <Info>
-            <div>{openItem.name}</div>
-            <div>{openItem.price} ₽</div>
-          </Info>
+  const addToOrder = () => {
+    setOrders([...orders, order]);
+    // setOpenItem(null);
+  };
 
-          <ButtonCheckout>Add</ButtonCheckout>
-        </Modal>
-      </Overlay>
-    );
+  // if (!openItem) return null;
+  return (
+    <Overlay id="overlay" onClick={closeModal}>
+      <Modal>
+        <Banner img={openItem.img} />
+        <Info>
+          <div>{openItem.name}</div>
+          <div>{openItem.price} ₽</div>
+        </Info>
+
+        <ButtonCheckout onClick={addToOrder}>Add</ButtonCheckout>
+      </Modal>
+    </Overlay>
+  );
 };
