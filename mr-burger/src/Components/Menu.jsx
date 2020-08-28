@@ -7,7 +7,7 @@ import { Banner } from './Banner';
 const MenuStyled = styled.main`
 	background-color: bisque;
 	padding-top: 100px;
-
+  margin-left: 380px;
 `;
 
 export const Menu = ({ setOpenItem }) => (

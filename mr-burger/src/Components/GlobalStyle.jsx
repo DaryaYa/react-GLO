@@ -9,6 +9,12 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 20px;
   }
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   h1, h2, h3 {
     font-family: 'Pacifico', cursive;
   }
