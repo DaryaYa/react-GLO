@@ -28,12 +28,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button, input {
-    font-family: inherit;
-    font-size: inherit;
+    font: inherit;
+    cursor: pointer;
   }
 
   ul, li {
     margin, padding: 0;
-list-style-type: none;
+    list-style-type: none;
   }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 `;

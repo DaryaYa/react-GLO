@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ButtonCheckout } from "../ButtonCheckout";
 import { OrderListItem } from './OrderListItem';
+import { totalPriceItems } from '../Functions/secondaryFunction';
 
 let q = 0;
 
@@ -50,19 +51,28 @@ const Empty = styled.p`
 `;
 
 export const Order = ({ orders }) => {
+	
+	const total = orders.reduce((result, order)=>
+	totalPriceItems(order) + result, 0) 
+
   return (
     <OrderStyled>
       <OrderTitle>Your Order</OrderTitle>
       <OrderContent>
-       {orders.length ?
-		   <OrderList>
-          {orders.map(order => <OrderListItem order={order} key={q++} />)}
-        </OrderList> : <Empty>No Items Taken</Empty>}
+        {orders.length ? (
+          <OrderList>
+            {orders.map((order) => (
+              <OrderListItem order={order} key={q++} />
+            ))}
+          </OrderList>
+        ) : (
+          <Empty>No Items Taken</Empty>
+        )}
       </OrderContent>
       <Total>
         <span>Total</span>
-        <span>6</span>
-        <TotalPrice>1234 ₽</TotalPrice>
+        <span>1</span>
+        <TotalPrice>{total} ₽</TotalPrice>
       </Total>
       <ButtonCheckout>Order</ButtonCheckout>
     </OrderStyled>

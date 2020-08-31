@@ -10,7 +10,6 @@ export const ButtonCheckout = styled.button`
   outline: none;
   border-radius: 5px;
   margin: auto;
-  cursor: pointer;
   transition-property: color, background-color;
   transition-duration: 0.3s;
   &:hover {
