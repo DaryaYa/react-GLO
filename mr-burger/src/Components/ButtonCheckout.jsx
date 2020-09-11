@@ -16,4 +16,8 @@ export const ButtonCheckout = styled.button`
     background-color: gold;
     color: brown;
   }
+  &:disabled {
+    color: black;
+    background-color: grey;
+  }
 `;

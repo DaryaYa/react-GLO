@@ -4,15 +4,13 @@ import { ButtonCheckout } from "../ButtonCheckout";
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems } from '../Functions/secondaryFunction';
 
-let q = 0;
-
 const OrderStyled = styled.section`
 	position: fixed;
 	display: flex;
 	top: 110px;
 	left: 0;
 	background: white;
-	min-width: 380px;
+	width: 380px;
 	height: calc(100% - 200px);
 	box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.4);
 	padding: 20px;
@@ -50,7 +48,13 @@ const Empty = styled.p`
 	text-align: center;
 `;
 
-export const Order = ({ orders }) => {
+export const Order = ({ orders, setOrders, setOpenItem }) => {
+
+	const deleteItem = index => {
+		const newOrders = [...orders];
+		newOrders.splice(index, 1);	
+		setOrders(newOrders);
+	}
 	
 	const total = orders.reduce((result, order)=>
 	totalPriceItems(order) + result, 0);
@@ -64,8 +68,14 @@ export const Order = ({ orders }) => {
       <OrderContent>
         {orders.length ? (
           <OrderList>
-            {orders.map((order) => (
-              <OrderListItem order={order} key={q++} />
+            {orders.map((order, index) => (
+              <OrderListItem
+                order={order}
+                key={index}
+                deleteItem={deleteItem}
+                index={index}
+                setOpenItem={setOpenItem}
+              />
             ))}
           </OrderList>
         ) : (

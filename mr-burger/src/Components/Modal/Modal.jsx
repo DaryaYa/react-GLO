@@ -5,7 +5,9 @@ import { CountItem } from "./CountItem";
 import { useCount } from '../Hooks/useCount';
 import { totalPriceItems } from '../Functions/secondaryFunction';
 import { Toppings } from "./Toppings";
+import { Choice } from "./Choice";
 import { useToppings } from "../Hooks/useToppings";
+import { useChoice } from "../Hooks/useChoice";
 
 const Overlay = styled.div`
   position: fixed;
@@ -52,15 +54,19 @@ const Info = styled.div`
 const TotalPriceItem = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 90%;
+  margin-top: 20px;
+  font-weight: bold;
 `;
 
 // export const totalPriceItems = order => order.price * order.count;
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-  const counter = useCount();
+  const counter = useCount(openItem.count);
   const toppings = useToppings(openItem);
+  const choice = useChoice(openItem);
+  const isEdit = openItem.index > -1;
 
   const closeModal = (event) => {
     if (event.target.id === "overlay") {
@@ -72,12 +78,19 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     ...openItem,
     count: counter.count,
     topping: toppings.toppings,
+    choice: choice.choice,
   };
 
   const addToOrder = () => {
     setOrders([...orders, order]);
     setOpenItem(null);
   };
+
+  const editOrder = () => {
+    const newOrders = [...orders];
+    newOrders[openItem.index] = order;
+    setOrders(newOrders);
+  }
 
   // if (!openItem) return null;
   return (
@@ -90,11 +103,17 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         </Info>
         <CountItem {...counter} />
         {openItem.toppings && <Toppings {...toppings} />}
+        {openItem.choices && <Choice {...choice} openItem={openItem} />}
         <TotalPriceItem>
           <span>Price:</span>
           <span>{totalPriceItems(order)} ₽</span>
         </TotalPriceItem>
-        <ButtonCheckout onClick={addToOrder}>Add</ButtonCheckout>
+        <ButtonCheckout
+          onClick={isEdit ? editOrder : addToOrder}
+          disabled={order.choices && !order.choice}
+        >
+          {isEdit ? 'Edit' : 'Add'}
+        </ButtonCheckout>
       </Modal>
     </Overlay>
   );
