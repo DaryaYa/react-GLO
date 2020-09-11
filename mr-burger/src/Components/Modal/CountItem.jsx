@@ -19,8 +19,6 @@ const ButtonCount = styled.button`
 `;
 
 export const CountItem = function ({ count, setCount, onChange }) {
-
-
   return (
     <CountWrapper>
       <span>Amount</span>
